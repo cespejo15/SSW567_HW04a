@@ -12,13 +12,13 @@ def Repositories(username):
                 if responseCommits.status_code == 200:
                     userCommits = json.loads(responseCommits.text)
                     count = len(userCommits)
-                    print(f"Repo: {repo['name']} Number of commits: {count}")
+                    return f"Repo: {repo['name']} Number of commits: {count}"
                 else:
-                    print(f"Commit retrieval faliure for {repo['name']}")
+                    return f"Commit retrieval faliure for {repo['name']}"
         else:
-            print("User has no repositories.")
+            return "User has no repositories."
     else:
-        print("Repository retrieval faliure or Repository not found")
+        return "Repository retrieval faliure or Repository not found"
 
 
 username = input("Input Github Username: ") 
