@@ -16,13 +16,11 @@ def Repositories(username):
                     repoList.append(f"Repo: {repo['name']} Number of commits: {count}")
                 else:
                     repoList.append(f"Commit retrieval faliure for {repo['name']}")
-            print(repoList)
-            return repoList
+            return '\n'.join(repoList) + "\n"
         else:
             return "User has no repositories."
     else:
-        return "Repository retrieval faliure or Repository not found"
-
+        return "Repository retrieval failure or Repository not found"
 
 username = input("Input Github Username: ") 
-Repositories(username)
+print(Repositories(username))
