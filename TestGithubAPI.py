@@ -1,7 +1,5 @@
 
 import unittest
-import json
-import requests
 
 from GithubAPI import Repositories
 
