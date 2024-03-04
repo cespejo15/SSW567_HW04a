@@ -1,4 +1,3 @@
-
 import requests
 import json
 
@@ -22,5 +21,3 @@ def Repositories(username):
             return "User has no repositories."
     else:
         return "Repository retrieval failure or Repository not found"
-# username1 = input("Input a GitHub User ID: ")
-# print(Repositories(username1))
