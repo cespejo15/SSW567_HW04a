@@ -34,15 +34,15 @@ class TestGithubAPI(unittest.TestCase):
         #repo 
         mock_repo = MagicMock()
         mock_repo.status_code = 200
-        mock_repo.text = '[{"name": "example_repo"}]'
+        mock_repo.text = '[{"name": "anything"}]'
         #commit
         mock_commit = MagicMock()
         mock_commit.status_code = 200
         mock_commit.text = '[{"commit": {"message": "Commit 1"}}]' 
 
         mock_response.side_effect = [mock_repo, mock_commit]
-        result = Repositories("example_user")
-        self.assertEqual(result, "Repo: example_repo Number of commits: 1")
+        result = Repositories("anyone")
+        self.assertEqual(result, "Repo: anything Number of commits: 1")
 
 
 if __name__ == '__main__':
