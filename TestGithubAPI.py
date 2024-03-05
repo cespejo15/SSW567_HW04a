@@ -1,6 +1,5 @@
 
 import unittest
-from unittest import mock
 from unittest.mock import patch, MagicMock
 
 from GithubAPI import Repositories      
@@ -30,13 +29,20 @@ class TestGithubAPI(unittest.TestCase):
 #         # A random GitHub account with 1 repo
 #         self.assertEqual(Repositories("meczin171"),"Repo: meczin171 Number of commits: 3")
     
-    @mock.patch('GithubAPI.requests.get')
-    def test_mock_request(self, mock_get):
-        mock_response = MagicMock()
-        mock_response.status_code = 200
-        mock_response.text = '[{"name": "anything"}]' 
-        mock_get.return_value = mock_response
-        self.assertEqual(Repositories("anyone"), "Repo: anything Number of commits: 1")
+    @patch('GithubAPI.requests.get')
+    def test_mock_request(self, mock_response):
+        #repo 
+        mock_repo = MagicMock()
+        mock_repo.status_code = 200
+        mock_repo.text = '[{"name": "example_repo"}]'
+        #commit
+        mock_commit = MagicMock()
+        mock_commit.status_code = 200
+        mock_commit.text = '[{"commit": {"message": "Commit 1"}}]' 
+
+        mock_response.side_effect = [mock_repo, mock_commit]
+        result = Repositories("example_user")
+        self.assertEqual(result, "Repo: example_repo Number of commits: 1")
 
 
 if __name__ == '__main__':
